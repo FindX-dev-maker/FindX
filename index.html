@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>FindX — Find it. Love it. Own it.</title>
+  <meta name="description" content="FindX is a modern marketplace to discover products, shop, and start selling.">
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">Welcome to FindX <span>·</span> Discover something great today</div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="FindX home">
+      <img src="logo.svg" alt="" class="brand-logo">
+      <span>Find<span class="brand-x">X</span></span>
+    </a>
+    <form id="searchForm" class="searchbar" role="search">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input id="searchInput" type="search" placeholder="Search products, brands and more" aria-label="Search products">
+      <select id="categorySelect" aria-label="Search category">
+        <option value="all">All categories</option>
+      </select>
+      <button class="search-button" type="submit">Search</button>
+    </form>
+    <nav class="header-actions" aria-label="Main navigation">
+      <button id="themeToggle" class="icon-button" title="Switch theme" aria-label="Switch theme">☾</button>
+      <button id="sellHeader" class="text-button">Sell on FindX</button>
+      <button id="cartButton" class="cart-button" aria-label="Open cart">Cart <span id="cartCount">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT GREAT FIND</div>
+        <h1>Good finds.<br><span>Great stories.</span></h1>
+        <p>Discover products you’ll love, from everyday essentials to one-of-a-kind treasures. Your marketplace starts here.</p>
+        <div class="hero-actions">
+          <a href="#marketplace" class="primary-button">Explore products <span>↗</span></a>
+          <button id="heroSell" class="secondary-button">Start selling</button>
+        </div>
+        <div class="trust-row"><span>✓ Easy discovery</span><span>✓ Seller-friendly</span><span>✓ Built for you</span></div>
+      </div>
+      <div class="hero-art" aria-label="Featured shopping categories">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="floating-card card-top"><span class="mini-icon purple">✦</span><div><b>New discoveries</b><small>Something for everyone</small></div></div>
+        <div class="product-showcase"><div class="showcase-glow"></div><div class="showcase-box">FX</div><div class="showcase-caption"><span>THE FIND OF THE DAY</span><b>Made for your next chapter.</b></div></div>
+        <div class="floating-card card-bottom"><span class="mini-icon green">↗</span><div><b>Your shop, your way</b><small>Start selling on FindX</small></div></div>
+      </div>
+    </section>
+
+    <section class="benefit-strip">
+      <div><span class="benefit-icon">⌕</span><p><b>Find your thing</b><small>Search a growing marketplace</small></p></div>
+      <div><span class="benefit-icon">♡</span><p><b>Save your favourites</b><small>Keep the good stuff close</small></p></div>
+      <div><span class="benefit-icon">↗</span><p><b>Open your shop</b><small>Turn products into opportunities</small></p></div>
+    </section>
+
+    <section id="marketplace" class="marketplace section-wrap">
+      <div class="section-heading">
+        <div><div class="eyebrow">THE MARKETPLACE</div><h2>Find something <span>good.</span></h2><p>Handpicked demo listings to get your marketplace started.</p></div>
+        <button id="addProductTop" class="outline-button">＋ Add a product</button>
+      </div>
+      <div id="categoryChips" class="category-chips"></div>
+      <div class="results-line"><span id="resultsCount">Showing products</span><label>Sort by <select id="sortSelect"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A–Z</option></select></label></div>
+      <div id="productGrid" class="product-grid"></div>
+      <div id="emptyState" class="empty-state hidden"><div class="empty-symbol">⌕</div><h3>No finds just yet</h3><p>Try another search or add the first product to your marketplace.</p><button id="emptyAdd" class="primary-button">Add a product</button></div>
+    </section>
+
+    <section class="seller-banner">
+      <div class="seller-mark"><img src="logo.svg" alt=""></div>
+      <div><div class="eyebrow">MADE FOR MAKERS</div><h2>Your next customer is out there.</h2><p>Open your FindX shop and bring your products to a new audience.</p></div>
+      <button id="bannerSell" class="light-button">Become a seller <span>↗</span></button>
+    </section>
+
+    <section class="how-it-works section-wrap">
+      <div class="eyebrow">SIMPLE BY DESIGN</div><h2>A better way to <span>find and sell.</span></h2>
+      <div class="steps-grid">
+        <article><span>01</span><div class="step-icon">⌕</div><h3>Explore</h3><p>Search by product or category to discover your next favourite thing.</p></article>
+        <article><span>02</span><div class="step-icon">♡</div><h3>Choose</h3><p>Compare listings, save favourites, and add items to your cart.</p></article>
+        <article><span>03</span><div class="step-icon">↗</div><h3>Sell</h3><p>Set up a seller profile and publish your own products.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="#"><img src="logo.svg" alt=""><span>Find<span class="brand-x">X</span></span></a>
+    <p>Find it. Love it. Own it.</p>
+    <div class="footer-links"><a href="#marketplace">Shop</a><button id="footerSell">Sell on FindX</button><a href="README.md">About this demo</a></div>
+    <small>© <span id="year"></span> FindX Marketplace. Built for what’s next.</small>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Product detail / cart / seller forms are rendered by app.js -->
+  <div id="modalRoot"></div>
+  <script src="app.js"></script>
+</body>
+</html>
