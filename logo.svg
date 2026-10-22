@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="FindX logo">
-  <rect x="4" y="4" width="92" height="92" rx="28" fill="#111827"/>
-  <path d="M25 72V28h31v10H37v9h16v10H37v15H25Z" fill="#FFFFFF"/>
-  <path d="M58 29h13L42 72H29L58 29Z" fill="#3184F6"/>
-  <path d="M51 47h13l14 25H65L51 47Z" fill="#EF4444"/>
-  <circle cx="77" cy="25" r="5" fill="#3184F6"/>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8b78ff"/><stop offset="1" stop-color="#5238d7"/></linearGradient></defs>
+  <rect x="4" y="4" width="92" height="92" rx="28" fill="url(#g)"/>
+  <path d="M29 70V30h28v9H40v8h15v9H40v14H29Z" fill="#fff"/>
+  <path d="M61 46l16 24H64L48 46h13Z" fill="#c9c0ff"/>
+  <path d="M66 30h12L48 70H36l30-40Z" fill="#fff"/>
+  <circle cx="76" cy="27" r="5" fill="#35e0b1"/>
 </svg>

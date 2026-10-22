@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111827">
+  <meta name="theme-color" content="#f5f7fb">
   <title>FindX — Find it. Love it. Own it.</title>
   <meta name="description" content="FindX is a modern marketplace to discover products, shop, and start selling.">
   <link rel="icon" href="logo.svg" type="image/svg+xml">
@@ -25,7 +25,9 @@
       <button class="search-button" type="submit">Search</button>
     </form>
     <nav class="header-actions" aria-label="Main navigation">
-      <button id="themeToggle" class="icon-button" title="Switch to dark theme" aria-label="Switch to dark theme">☾</button>
+      <button id="themeToggle" class="icon-button" title="Switch theme" aria-label="Switch theme">☾</button>
+      <button id="accountButton" class="text-button">Log in / Sign up</button>
+      <button id="dashboardButton" class="text-button">Dashboard</button>
       <button id="sellHeader" class="text-button">Sell on FindX</button>
       <button id="cartButton" class="cart-button" aria-label="Open cart">Cart <span id="cartCount">0</span></button>
     </nav>
@@ -63,6 +65,12 @@
         <button id="addProductTop" class="outline-button">＋ Add a product</button>
       </div>
       <div id="categoryChips" class="category-chips"></div>
+      <div class="findx-filterbar" aria-label="Product filters">
+        <label>Min price <input id="minPrice" type="number" min="0" placeholder="0"></label>
+        <label>Max price <input id="maxPrice" type="number" min="0" placeholder="No limit"></label>
+        <label>Currency <select id="currencySelect"><option value="USD">USD · US Dollar</option><option value="NGN">NGN · Nigerian Naira</option></select></label>
+        <button id="clearFilters" class="outline-button" type="button">Clear filters</button>
+      </div>
       <div class="results-line"><span id="resultsCount">Showing products</span><label>Sort by <select id="sortSelect"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A–Z</option></select></label></div>
       <div id="productGrid" class="product-grid"></div>
       <div id="emptyState" class="empty-state hidden"><div class="empty-symbol">⌕</div><h3>No finds just yet</h3><p>Try another search or add the first product to your marketplace.</p><button id="emptyAdd" class="primary-button">Add a product</button></div>
@@ -87,7 +95,7 @@
   <footer class="footer">
     <a class="brand footer-brand" href="#"><img src="logo.svg" alt=""><span>Find<span class="brand-x">X</span></span></a>
     <p>Find it. Love it. Own it.</p>
-    <div class="footer-links"><a href="#marketplace">Shop</a><button id="footerSell">Sell on FindX</button><a href="README.md">About this demo</a></div>
+    <div class="footer-links"><a href="#marketplace">Shop</a><button id="footerSell">Sell on FindX</button><button id="footerAccount">Log in</button><button id="footerDashboard">Dashboard</button><button id="adminButton">Admin demo</button><a href="README.md">About this demo</a></div>
     <small>© <span id="year"></span> FindX Marketplace. Built for what’s next.</small>
   </footer>
 
