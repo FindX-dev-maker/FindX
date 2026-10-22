@@ -20,7 +20,21 @@ const tones = {lavender:'#e9e4ff',peach:'#ffe8dd',mint:'#dff6eb',blue:'#dceeff',
 function read(key, fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}}
 function write(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}
 let products = read('findx_products',null);
-if(!Array.isArray(products)||products.length===0) products=seedProducts;
+if(!Array.isArray(products)||products.length===0) {
+ products = seedProducts.map(p=>({...p}));
+} else {
+ // Upgrade the existing demo products saved in this browser. Earlier versions
+ // stored emoji-only products in localStorage, which otherwise override new seeds.
+ const seedById = new Map(seedProducts.map(p=>[String(p.id),p]));
+ products = products.map(p=>{
+   const seed = seedById.get(String(p.id));
+   if(seed && (!p.image || typeof p.image !== 'string' || !p.image.startsWith('http'))) {
+     return {...seed, ...p, image: seed.image};
+   }
+   return p;
+ });
+} 
+write('findx_products', products);
 let cart = read('findx_cart',[]);
 let favourites = read('findx_favourites',[]);
 let activeCategory='all', searchTerm='';
