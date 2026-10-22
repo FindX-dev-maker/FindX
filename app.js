@@ -17,7 +17,8 @@ const seedProducts = [
 const tones = {lavender:'#e9e4ff',peach:'#ffe8dd',mint:'#dff6eb',blue:'#dceeff',yellow:'#fff1c9',rose:'#ffe0ea'};
 function read(key, fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}}
 function write(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}
-let products = read('findx_products',null) || seedProducts;
+let products = read('findx_products',null);
+if(!Array.isArray(products) || products.length===0) products = seedProducts;
 let cart = read('findx_cart',[]);
 let favourites = read('findx_favourites',[]);
 let activeCategory='all', searchTerm='';
@@ -69,7 +70,7 @@ function openAddProduct(){
 }
 function openSeller(){
  modal(`${modalHead('Become a FindX seller','Set up your shop and start listing products.')}
- <div class="seller-price"><div><b>$10.00</b><br><small>One-time seller registration fee</small></div><span class="badge-label">SELLER ACCESS</span></div>
+ <div class="seller-price"><div><b>$10.00</b><br><small>Monthly seller subscription</small></div><span class="badge-label">SELLER ACCESS</span></div>
  <div class="notice"><b>Payment setup required.</b> This demo cannot collect the $10 fee yet. Before launch, connect a payment provider and verify payment on a secure server. Never collect or store card details in this static website.</div>
  <form id="sellerForm"><div class="field"><label for="sellerName">Shop name *</label><input id="sellerName" name="shop" required maxlength="60" placeholder="Your shop name"></div>
  <div class="field"><label for="sellerEmail">Email address *</label><input id="sellerEmail" name="email" type="email" required placeholder="you@example.com"></div>
@@ -78,7 +79,7 @@ function openSeller(){
  <button class="primary-button wide-button" type="submit">Create demo seller profile</button></form>`,false);
  $('#sellerForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget);const seller={shop:f.get('shop').trim(),email:f.get('email').trim(),bio:f.get('bio').trim(),createdAt:new Date().toISOString()};write('findx_demo_seller',seller);closeModal();notify(`Demo shop “${seller.shop}” created. No payment was taken.`);openSellerSuccess(seller.shop);});
 }
-function openSellerSuccess(shop){modal(`${modalHead('Your demo shop is ready!','You can now add sample products to test the seller experience.')}<div class="notice"><b>${escapeHtml(shop)}</b> has been saved in this browser. The $10 fee is not active until payment processing is configured.</div><button id="successAdd" class="primary-button wide-button">Add your first product ↗</button><p class="form-note">This is a prototype, not a live account system. Visitors on other devices will not see this profile.</p>`);$('#successAdd').addEventListener('click',openAddProduct)}
+function openSellerSuccess(shop){modal(`${modalHead('Your demo shop is ready!','You can now add sample products to test the seller experience.')}<div class="notice"><b>${escapeHtml(shop)}</b> has been saved in this browser. The $10/month subscription is not active until payment processing is configured.</div><button id="successAdd" class="primary-button wide-button">Add your first product ↗</button><p class="form-note">This is a prototype, not a live account system. Visitors on other devices will not see this profile.</p>`);$('#successAdd').addEventListener('click',openAddProduct)}
 function openProduct(id){const p=products.find(x=>x.id===id);if(!p)return;modal(`${modalHead('Product details','A closer look at this find.')}<div class="product-detail"><div class="detail-visual" style="background:${p.image?'var(--surface-2)':(tones[p.tone]||'#e9e4ff')}">${productVisual(p)}</div><div class="detail-copy"><span class="badge-label">${escapeHtml(p.category)}</span><h2>${escapeHtml(p.name)}</h2><p>${escapeHtml(p.description||'A new find waiting to be discovered.')}</p><div class="product-price">${money(p.price)}</div><div class="detail-meta">Sold by ${escapeHtml(p.seller||'FindX seller')}</div><button id="detailAdd" class="primary-button wide-button">Add to cart</button><p class="form-note">Demo product. Availability, delivery, seller verification and buyer protection are not connected yet.</p></div></div>`,true);$('#detailAdd').addEventListener('click',()=>{addToCart(id);closeModal()})}
 function addToCart(id){const p=products.find(x=>x.id===id);if(!p)return;const found=cart.find(x=>x.id===id);if(found)found.qty++;else cart.push({id,qty:1});renderCartCount();notify('Added to your cart.')}
 function openCart(){
