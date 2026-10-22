@@ -27,3 +27,7 @@ The sample product list is near the top of `app.js` in `seedProducts`. You can e
 
 ## Publish on GitHub Pages
 Upload the contents of the `FindX-main` folder to the root of your existing repository (where `index.html`, `app.js`, `styles.css` and `logo.svg` already live). Do not upload only the enclosing folder as a nested directory. GitHub Pages should publish from the branch/folder configured in Settings → Pages.
+
+
+## Product photos
+The eight starter products use real product photography hosted by Unsplash. An internet connection is required to load those remote images. These are demonstration listings and prices, not live seller inventory.
