@@ -78,7 +78,7 @@ Be friendly, clear, practical, honest, and thoughtful. Ask a concise follow-up w
       if (!upstream.ok) {
         return json({ error: data.error?.message || "The AI service could not complete that request." }, upstream.status === 429 ? 429 : 502, ALLOWED_ORIGIN);
       }
-      const answer = typeof data.output_text === "string" ? data.output_text.trim() : "";
+      const answer = (typeof data.output_text === "string" ? data.output_text : (data.output || []).flatMap(item => item.content || []).filter(part => part.type === "output_text").map(part => part.text || "").join("\n")).trim();
       if (!answer) return json({ error: "Nyxorith did not return a reply. Please try again." }, 502, ALLOWED_ORIGIN);
       return json({ reply: answer }, 200, ALLOWED_ORIGIN);
     } catch {
