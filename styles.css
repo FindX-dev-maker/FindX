@@ -26,3 +26,6 @@
 .modal h3{margin:18px 0 8px;font-size:14px}.modal p{line-height:1.6}
 .secondary-button{cursor:pointer}
 @media(max-width:720px){.findx-filterbar{display:grid;grid-template-columns:1fr 1fr}.findx-filterbar label,.findx-filterbar input,.findx-filterbar select{min-width:0;width:100%}.findx-filterbar .outline-button{grid-column:1/-1}.dashboard-grid{grid-template-columns:1fr 1fr}.audit-row{flex-direction:column}.audit-row b{text-align:left}}
+
+
+/* Nyxorith assistant is styled by nyxorith.js so the marketplace styles remain unchanged. */
